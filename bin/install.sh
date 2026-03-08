@@ -7,11 +7,11 @@ set -euo pipefail
 
 BRANCH="master"
 ANSIBLE_PLAYBOOK_ARGS=()
-REPOSITORY="https://github.com/Screenly/Anthias.git"
+REPOSITORY="https://github.com/MaxonXOXO/Anthias-X.git"
 ANTHIAS_REPO_DIR="/home/${USER}/screenly"
-GITHUB_API_REPO_URL="https://api.github.com/repos/Screenly/Anthias"
-GITHUB_RELEASES_URL="https://github.com/Screenly/Anthias/releases"
-GITHUB_RAW_URL="https://raw.githubusercontent.com/Screenly/Anthias"
+GITHUB_API_REPO_URL="https://api.github.com/repos/MaxonXOXO/Anthias-X"
+GITHUB_RELEASES_URL="https://github.com/MaxonXOXO/Anthias-X/releases"
+GITHUB_RAW_URL="https://raw.githubusercontent.com/MaxonXOXO/Anthias-X"
 DOCKER_TAG="latest"
 UPGRADE_SCRIPT_PATH="${ANTHIAS_REPO_DIR}/bin/upgrade_containers.sh"
 ARCHITECTURE=$(uname -m)
@@ -50,7 +50,7 @@ TITLE_TEXT=$(cat <<EOF
 @@@@@@@@@@ @@   @@@@        d88P 888 88888b.  888888 88888b.  888  8888b.  .d8888b
 @@@@@       @@@@@@@@       d88P  888 888 "88b 888    888 "88b 888     "88b 88K
 @@@%:      :@@@@@@@@      d88P   888 888  888 888    888  888 888 .d888888 "Y8888b.
- @@-:::::::%@@@@@@@      d8888888888 888  888 Y88b.  888  888 888 888  888      X88
+ @@-:::::::%@@@@@@@      d8888888888 888  888 Y88b.  888  888 888 888  888      X88 -----  X
   @=::::=%@@@@@@@@      d88P     888 888  888  "Y888 888  888 888 "Y888888  88888P'
      @@@@@@@@@@
 EOF
@@ -327,37 +327,6 @@ function post_installation() {
         gum style --foreground "#FF00FF" "Rebooting..." | gum format && \
         sudo reboot
 }
-
-function set_custom_version() {
-    BRANCH=$(
-        gum input \
-            --header "Enter the tag name you want to install" \
-    )
-
-    local STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-        "${GITHUB_API_REPO_URL}/git/refs/tags/$BRANCH")
-
-    if [ "$STATUS_CODE" -ne 200 ]; then
-        gum style "Invalid tag name." \
-            | gum format
-        echo
-        exit 1
-    fi
-
-    local DOCKER_TAG_FILE_URL="${GITHUB_RELEASES_URL}/download/${BRANCH}/docker-tag"
-    STATUS_CODE=$(curl -sL -o /dev/null -w "%{http_code}" \
-        "$DOCKER_TAG_FILE_URL")
-
-    if [ "$STATUS_CODE" -ne 200 ]; then
-        gum style "This version doesn't have a \`docker-tag\` file." \
-            | gum format
-        echo
-        exit 1
-    fi
-
-    DOCKER_TAG=$(curl -sL "$DOCKER_TAG_FILE_URL")
-}
-
 function main() {
     install_prerequisites && clear
 
@@ -370,17 +339,8 @@ function main() {
         export MANAGE_NETWORK="Yes" || \
         export MANAGE_NETWORK="No"
 
-    VERSION=$(
-        gum choose \
-            --header "${VERSION_PROMPT}" \
-            -- "${VERSION_PROMPT_CHOICES[@]}"
-    )
-
-    if [ "$VERSION" == "latest" ]; then
-        BRANCH="master"
-    else
-        set_custom_version
-    fi
+    VERSION="latest"
+    BRANCH="master"
 
     gum confirm "${SYSTEM_UPGRADE_PROMPT[@]}" && {
         SYSTEM_UPGRADE="Yes"
