@@ -219,7 +219,7 @@ def main(
     # Build Docker images
     for service_name in services_to_build:
         # Define tag components
-        namespaces = ['screenly/anthias', 'screenly/srly-ose']
+        namespaces = ['maxonxoxo/anthias']
         version_suffix = (
             f'{board}-64'
             if board == 'pi4' and platform == 'linux/arm64/v8'

@@ -8,7 +8,6 @@ set -euo pipefail
 BRANCH="master"
 ANSIBLE_PLAYBOOK_ARGS=()
 REPOSITORY="https://github.com/MaxonXOXO/Anthias-X.git"
-ANTHIAS_REPO_DIR="/home/${USER}/screenly"
 GITHUB_API_REPO_URL="https://api.github.com/repos/MaxonXOXO/Anthias-X"
 GITHUB_RELEASES_URL="https://github.com/MaxonXOXO/Anthias-X/releases"
 GITHUB_RAW_URL="https://raw.githubusercontent.com/MaxonXOXO/Anthias-X"
@@ -43,17 +42,22 @@ SYSTEM_UPGRADE_PROMPT=(
 SUDO_ARGS=()
 
 TITLE_TEXT=$(cat <<EOF
-     @@@@@@@@@
-  @@@@@@@@@@@@                 d8888          888    888      d8b
- @@@@@@@  @@@    @@           d88888          888    888      Y8P
-@@@@@@@@@@@@@    @@@         d88P888          888    888
-@@@@@@@@@@ @@   @@@@        d88P 888 88888b.  888888 88888b.  888  8888b.  .d8888b
-@@@@@       @@@@@@@@       d88P  888 888 "88b 888    888 "88b 888     "88b 88K
-@@@%:      :@@@@@@@@      d88P   888 888  888 888    888  888 888 .d888888 "Y8888b.
- @@-:::::::%@@@@@@@      d8888888888 888  888 Y88b.  888  888 888 888  888      X88 -----  X
-  @=::::=%@@@@@@@@      d88P     888 888  888  "Y888 888  888 888 "Y888888  88888P'
-     @@@@@@@@@@
-EOF
+                                                                           ,ggg,                                                                      ,ggg,          ,gg
+ ,dPYb,                I8                                            dP""8I                   I8    ,dPYb,                                      dP"""Y8,      ,dP' 
+ IP'`Yb                I8                                           dP   88                   I8    IP'`Yb                                      Yb,_  "8b,   d8"   
+ I8  8I             88888888                                       dP    88                88888888 I8  8I      gg                               `""    Y8,,8P'    
+ I8  8'                I8                                         ,8'    88                   I8    I8  8'      ""                                       Y88"      
+ I8 dP     ,ggggg,     I8      ,ggggg,     ,ggg,,ggg,             d88888888    ,ggg,,ggg,     I8    I8 dPgg,    gg     ,gggg,gg    ,g,   aaaaaaaa       ,888b      
+ I8dP     dP"  "Y8ggg  I8     dP"  "Y8ggg ,8" "8P" "8,      __   ,8"     88   ,8" "8P" "8,    I8    I8dP" "8I   88    dP"  "Y8I   ,8'8,  """"""""      d8" "8b,    
+ I8P     i8'    ,8I   ,I8,   i8'    ,8I   I8   8I   8I     dP"  ,8P      Y8   I8   8I   8I   ,I8,   I8P    I8   88   i8'    ,8I  ,8'  Yb             ,8P'    Y8,   
+,d8b,_  ,d8,   ,d8'  ,d88b, ,d8,   ,d8'  ,dP   8I   Yb,    Yb,_,dP       `8b,,dP   8I   Yb, ,d88b, ,d8     I8,_,88,_,d8,   ,d8b,,8'_   8)           d8"       "Yb, 
+PI8"8888P"Y8888P"   88P""Y88P"Y8888P"    8P'   8I   `Y8     "Y8P"         `Y88P'   8I   `Y888P""Y8888P     `Y88P""Y8P"Y8888P"`Y8P' "YY8P8P        ,8P'          "Y8
+ I8 `8,                                                                                                                                                            
+ I8  `8,                                                                                                                                                           
+ I8   8I                                                                                                                                                           
+ I8   8I                                                                                                                                                           
+ I8, ,8'                                                                                                                                                           
+  "Y8P'                                                                                                                                                            
 )
 
 # Install gum from Charm.sh.
