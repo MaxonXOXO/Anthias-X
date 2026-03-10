@@ -185,7 +185,7 @@ export const SystemInfo = () => {
                 </td>
               </tr>
               <tr>
-                <th scope="row">Foton Panel Version</th>
+                         <th scope="row">Anthias Version</th>
                 <td>
                   <Skeleton isLoading={isLoading}>
                     <AnthiasVersionValue version={anthiasVersion} />
